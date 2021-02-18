@@ -3,6 +3,7 @@
 int N,problem;
 double L,tmax,cfl;
 double *cell_xc,dx,*cell_u1,*cell_u2,*cell_u3,*netflux[3];
+double *cell_u1_local, *cell_u2_local, *cell_u3_local;
 double deltat;
 
 int main()
