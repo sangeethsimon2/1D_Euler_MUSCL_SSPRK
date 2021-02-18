@@ -1,6 +1,7 @@
 #include "definitions.h"
 extern int N,problem;
 extern double *cell_xc,*cell_u1,*cell_u2,*cell_u3,*netflux[3],tmax;
+extern double *cell_u1_old, *cell_u2_old, *cell_u3_old;
 
 
 
@@ -14,15 +15,21 @@ void initialize()
 	
 	gamma=1.4;
 	
-	cell_u1 = (double *)malloc((N+2)*sizeof(double));
+	cell_u1 = (double *)malloc((N+4)*sizeof(double));
 	
-	cell_u2 = (double *)malloc((N+2)*sizeof(double));
+	cell_u2 = (double *)malloc((N+4)*sizeof(double));
 	
-	cell_u3 = (double *)malloc((N+2)*sizeof(double));
+	cell_u3 = (double *)malloc((N+4)*sizeof(double));
+	
+	cell_u1_old = (double *)malloc((N+4)*sizeof(double));
+	
+	cell_u2_old = (double *)malloc((N+4)*sizeof(double));
+	
+	cell_u3_old = (double *)malloc((N+4)*sizeof(double));
 	
 	for(i=0;i<3;i++)
 	{
-		netflux[i] = (double *)malloc((N+2)*sizeof(double));
+		netflux[i] = (double *)malloc((N+4)*sizeof(double));
 	}
 	
 	
