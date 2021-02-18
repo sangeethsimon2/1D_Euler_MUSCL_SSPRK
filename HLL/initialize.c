@@ -27,6 +27,13 @@ void initialize()
 	
 	cell_u3_old = (double *)malloc((N+4)*sizeof(double));
 	
+	xderivative_rho = (double *)malloc((N+4)*sizeof(double));
+	
+	xderivative_u = (double *)malloc((N+4)*sizeof(double));
+	
+	xderivative_p = (double *)malloc((N+4)*sizeof(double));
+	
+
 	for(i=0;i<3;i++)
 	{
 		netflux[i] = (double *)malloc((N+4)*sizeof(double));
