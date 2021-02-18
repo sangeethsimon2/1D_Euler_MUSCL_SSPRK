@@ -41,7 +41,7 @@ switch(problem)
 case 1:
 {	
 tmax=0.2;
-for(i = 0;i<=N+1;i++)
+for(i = 2;i<=N+1;i++)
 	{
 	
 		if(cell_xc[i]<0.30)                    
