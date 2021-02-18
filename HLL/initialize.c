@@ -2,6 +2,8 @@
 extern int N,problem;
 extern double *cell_xc,*cell_u1,*cell_u2,*cell_u3,*netflux[3],tmax;
 
+
+
 void initialize()
 {
 	int i;
@@ -22,10 +24,15 @@ void initialize()
 	{
 		netflux[i] = (double *)malloc((N+2)*sizeof(double));
 	}
-	problem=0;
+	
+	
+	problem=1;
+	/*
 	printf("\nEnter Toro problem no from 1 to 8\n");
 	scanf("%d",& problem);
 	printf("\n Problem = %d\n",problem);
+	*/
+
 	
 
 	
@@ -63,7 +70,7 @@ e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);    
 	}
 break;
 }
-
+/*
 case 2:
 {
 tmax=0.15;
@@ -87,16 +94,14 @@ for(i = 0;i<=N+1;i++)
 			
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1//    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1/  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1/  
+}
 break;
 }
 
@@ -121,16 +126,14 @@ for(i = 0;i<=N+1;i++)
 			p_initial = 0.01; 
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy/
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1//    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1/  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1//  
+}
 break;
 }
 
@@ -155,16 +158,14 @@ for(i = 0;i<=N+1;i++)
 			
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy/
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1//    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1/  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1//  
+}
 break;
 }
 
@@ -189,16 +190,14 @@ for(i = 0;i<=N+1;i++)
 			p_initial = 0.01; 
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy//
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1//    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1//  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1//  
+}
 break;
 }
 
@@ -224,16 +223,14 @@ for(i = 0;i<=N+1;i++)
 			p_initial = 1; 
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy//
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1//    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1//  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1//  
+}
 break;
 }
 
@@ -258,16 +255,14 @@ for(i = 0;i<=N+1;i++)
 			p_initial = 1; 
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy//
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1/    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1/  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1/  
+}
 break;
 }
 case 8:
@@ -291,18 +286,18 @@ for(i = 0;i<=N+1;i++)
 			p_initial = 0.1; 
                      
 		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
+e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      //Energy//
 		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		cell_u1[i] = rho_initial;                      //Conserved variable 1//    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = rho_initial * u_initial;         //Conserved variable 1//  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
-/*printf("%d\t%lf\t%lf\t%lf\t%lf\n",i,tmax,rho_initial, u_initial, p_initial);
-/*printf("%lf\t%lf\t%lf\t%lf\n",cell_xc[i],cell_u1[i],cell_u2[i],cell_u3[i]);*/
-	}
+		cell_u3[i] = e_initial;                        //Conserved variable 1//  
+}
 break;
 }
-		
-}/*end switch loop*/
-}/*end main loop*/
+*/
+
+
+}//end switch loop//
+}//end main loo//
