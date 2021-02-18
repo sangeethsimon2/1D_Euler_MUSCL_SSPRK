@@ -1,0 +1,7 @@
+#include "definitions.h"
+extern double *cell_xc;
+
+void delete_memory()
+{
+	free(cell_xc);
+}

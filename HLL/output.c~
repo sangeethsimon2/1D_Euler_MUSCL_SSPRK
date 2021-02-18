@@ -1,0 +1,29 @@
+#include "definitions.h"
+extern int N;
+extern double *cell_xc,*cell_u1,*cell_u2,*cell_u3;
+void output()
+{
+	int i;
+	double rho_temp,u_temp,a_temp,e_temp,pressure;
+
+	FILE *output_density;
+	FILE *output_pressure;
+	output_density = fopen("density.dat","w");
+	output_pressure = fopen("pressure.dat","w");
+
+	
+	for(i=1;i<=N;i++)
+	{
+		rho_temp= cell_u1[i];
+		u_temp=cell_u2[i]/cell_u1[i];
+		e_temp=cell_u3[i];
+		pressure = 0.4*(e_temp - 0.5 * rho_temp * u_temp * u_temp);
+		
+		
+		fprintf(output_density,"%lf\n",cell_u1[i]);
+		fprintf(output_pressure,"%lf\n",pressure);
+
+	}
+
+	fclose(output_file);
+}
