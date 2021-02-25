@@ -16,14 +16,18 @@ case 1:
 	
 
 	
-	for(i=1;i<=N;i++)
+	for(i=2;i<=N+1;i++)
 	{
 		rho_temp= cell_u1[i];
 		u_temp=cell_u2[i]/cell_u1[i];
 		e_temp=cell_u3[i];
 		pressure = 0.4*(e_temp - 0.5 * rho_temp * u_temp * u_temp);
 		sp_int_energy=(e_temp/rho_temp)-0.5*u_temp*u_temp;
-		fprintf(output_hll_1,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",cell_xc[i],u_temp,pressure,rho_temp,e_temp,sp_int_energy);
+		
+		fprintf(output_hll_1,"%d\t%lf\n",i,rho_temp);
+		
+		
+		//fprintf(output_hll_1,"%d\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",i,cell_xc[i],u_temp,pressure,rho_temp,e_temp,sp_int_energy);
 		
 		
 
@@ -39,16 +43,15 @@ case 2:
 	output_hll_2 = fopen("output_hll_2.dat","w");
 	
 
-	
-	for(i=1;i<=N;i++)
+	for(i=2;i<=N+1;i++)
 	{
 		rho_temp= cell_u1[i];
-		u_temp=cell_u2[i]/cell_u1[i];
-		e_temp=cell_u3[i];
-		pressure = 0.4*(e_temp - 0.5 * rho_temp * u_temp * u_temp);
-		sp_int_energy=(e_temp/rho_temp)-0.5*u_temp*u_temp;
-		fprintf(output_hll_2,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",cell_xc[i],u_temp,pressure,rho_temp,e_temp,sp_int_energy);
+		//u_temp=cell_u2[i]/cell_u1[i];
+		//e_temp=cell_u3[i];
+		//pressure = 0.4*(e_temp - 0.5 * rho_temp * u_temp * u_temp);
+		//sp_int_energy=(e_temp/rho_temp)-0.5*u_temp*u_temp;
 		
+		fprintf(output_hll_2,"%d\t%lf\n",i,rho_temp);
 		
 
 	}

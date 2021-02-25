@@ -1,8 +1,8 @@
-objects = program.o grid.o read_data.o initialize.o output.o delete_memory.o \
-	flux.o update.o
+objects = program.o grid.o read_data.o boundaryCondition.o copySolution.o timestep.o updateSecondOrder.o initialize.o output.o delete_memory.o \
+	flux.o update.o localizedCosine.o line.o computeError.o computeFlux.o
 
 run:$(objects)
-	cc -Wall -o run $(objects) -lm 
+	g++ -Wall -o run $(objects) -lm 
 
 
 program.o:program.c definitions.h
@@ -13,6 +13,16 @@ output.o:output.c definitions.h
 initialize.o:initialize.c definitions.h
 update.o:update.c definitions.h
 flux.o:flux.c definitions.h
+
+boundaryCondition.o:boundaryCondition.c definitions.h
+copySolution.o:copySolution.c definitions.h
+timestep.o:timestep.c definitions.h
+updateSecondOrder.o:updateSecondOrder.c definitions.h
+localizedCosine.o:localizedCosine.c definitions.h
+line.o:line.c definitions.h
+computeError.o:computeError.c definitions.h
+computeFlux.o:computeFlux.c definitions.h
+
 
 .PHONY:clean
 clean:

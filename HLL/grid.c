@@ -8,7 +8,7 @@ void grid()
 	dx = L/N;
 	cell_xc=(double *)malloc((N+4)*sizeof(double));
 	
-	for(i=1;i<=N+3;i++)
+	for(i=1;i<=N+2;i++)
 	{
 		cell_xc[i] = (i-1)*dx-dx/2; //x coordinate of cell centers
 		

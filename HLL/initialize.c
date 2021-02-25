@@ -1,7 +1,11 @@
 #include "definitions.h"
 extern int N,problem;
-extern double *cell_xc,*cell_u1,*cell_u2,*cell_u3,*netflux[3],tmax;
+extern double tmax;
+extern double *cell_xc;
+extern double *cell_u1,*cell_u2,*cell_u3;
+extern double *netflux[3];
 extern double *cell_u1_old, *cell_u2_old, *cell_u3_old;
+extern double *drhobydx, *dubydx, *dPbydx;
 
 
 
@@ -9,11 +13,11 @@ void initialize()
 {
 	int i;
 	
-	double gamma;
+//	double gamma;
 	
 	double rho_initial,u_initial,p_initial,e_initial;
 	
-	gamma=1.4;
+//	gamma=1.4;
 	
 	cell_u1 = (double *)malloc((N+4)*sizeof(double));
 	
@@ -27,11 +31,11 @@ void initialize()
 	
 	cell_u3_old = (double *)malloc((N+4)*sizeof(double));
 	
-	xderivative_rho = (double *)malloc((N+4)*sizeof(double));
+	drhobydx = (double *)malloc((N+4)*sizeof(double));
 	
-	xderivative_u = (double *)malloc((N+4)*sizeof(double));
+	dubydx  = (double *)malloc((N+4)*sizeof(double));
 	
-	xderivative_p = (double *)malloc((N+4)*sizeof(double));
+	dPbydx  = (double *)malloc((N+4)*sizeof(double));
 	
 
 	for(i=0;i<3;i++)
@@ -54,36 +58,49 @@ switch(problem)
 {
 case 1:
 {	
-tmax=0.2;
+double cellData[3];
+	
+//tmax=0.2;
+
+
 for(i = 2;i<=N+1;i++)
 	{
-	
-		if(cell_xc[i]<0.30)                    
-		{
-			rho_initial = 1;    p_initial = 1;             
-			u_initial = 0.75;                       
-			  
-           
-		}
 
-		else                                   
-		{
-			rho_initial = 0.125;  p_initial = 0.1;                        
-			u_initial = 0;                        
-			
-                     
-		}
-e_initial = 0.5 * rho_initial * u_initial * u_initial + p_initial/(gamma-1);      /*Energy*/
-		 
-		cell_u1[i] = rho_initial;                      /*Conserved variable 1*/    
+		localizedCosine( cell_xc[i],cellData,0.0);
+	
+
+		cell_u1[i] = cellData[0];                      /*Conserved variable 1*/    
 		
-		cell_u2[i] = rho_initial * u_initial;         /*Conserved variable 1*/  
+		cell_u2[i] = cellData[1];         /*Conserved variable 1*/  
 		
-		cell_u3[i] = e_initial;                        /*Conserved variable 1*/  
+		cell_u3[i] = cellData[2];                        /*Conserved variable 1*/  
 
 	}
 break;
 }
+
+case 2:
+{
+
+double cellData[3];
+
+for(i = 2;i<=N+1;i++)
+	{
+
+		line( cell_xc[i],cellData,0.0);
+	
+		cell_u1[i] = cellData[0];                      /*Conserved variable 1*/    
+		
+		cell_u2[i] = cellData[1];         /*Conserved variable 1*/  
+		
+		cell_u3[i] = cellData[2]; 
+
+
+	}
+break;
+}
+
+
 /*
 case 2:
 {

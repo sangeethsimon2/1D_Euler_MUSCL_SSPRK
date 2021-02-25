@@ -1,8 +1,9 @@
 #include "definitions.h"
 
-extern int N;
+extern int N,NQuad;
 extern double L,tmax,cfl;
-extern double secondOrderFlag;
+extern int secondOrderFlag;
+extern int itermax;
 
 void read_data()
 {
@@ -13,9 +14,12 @@ void read_data()
 	
 	fscanf(read,"%lf%s",&L,comment);
 	fscanf(read,"%d%s",&N,comment);
-	/*fscanf(read,"%lf%s",&tmax,comment);*/
 	fscanf(read,"%lf%s",&cfl,comment);
-	fscanf(read,"%lf%s",&secondOrderFlag,comment);
+
+	fscanf(read,"%d%s",&itermax,comment);
+	fscanf(read,"%lf%s",&tmax,comment);
+	fscanf(read,"%d%s",&secondOrderFlag,comment);
+	fscanf(read,"%d%s",&NQuad,comment);
 	
 
 	fclose(read);

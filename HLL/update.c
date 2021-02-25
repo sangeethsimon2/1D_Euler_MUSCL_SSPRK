@@ -6,21 +6,19 @@ void update()
 {
 	int i;
 	
-	for(i=1;i<=N;i++)
+	for(i=2;i<=N+1;i++)
 	{
+	//	printf("before\n");
+	//	printf("%d\t%lf\n",i,cell_u1[i]);
 		cell_u1[i] = cell_u1[i] - (deltat/dx)*(netflux[0][i]);
 
 		cell_u2[i] = cell_u2[i] - (deltat/dx)*(netflux[1][i]);
 
 		cell_u3[i] = cell_u3[i] - (deltat/dx)*(netflux[2][i]);
+	//	printf("after\n");
+	//	printf("%d\t%lf\n",i,cell_u1[i]);
 
 	}
-		cell_u1[0]=cell_u1[1];
-		cell_u2[0]=cell_u2[1];
-		cell_u3[0]=cell_u3[1];
-		cell_u1[N+1]=cell_u1[N];
-		cell_u2[N+1]=cell_u2[N];
-		cell_u3[N+1]=cell_u3[N];
-	
+
 }
 
