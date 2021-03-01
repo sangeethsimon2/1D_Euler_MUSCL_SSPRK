@@ -7,7 +7,7 @@ extern int secondOrderFlag;
 
 
 int sign(int x){
-	if (x > 0) return 1;
+	if (x >= 0) return 1;
 	if (x < 0) return -1;
 	return 0;
 }
@@ -24,7 +24,7 @@ double vanAlbada(double rL, double rR, double h){
 
 
 double minmod(double rL, double rR){
-int s = (sign(rL)+sign(rR))/2;
+	int s = (sign(rL)+sign(rR))/2;
 
 	if(fabs(s)==1){
 		return(s*fmin(fabs(rL),fabs(rR)));
@@ -100,12 +100,29 @@ void flux()
 
 			dPL = (pc-pl); // /dx;
 			dPR = (pr-pc); // /dx;
+			/*
+			if(drhoL<0&&drhoR<0){
+				printf("Both densities are negative at %d\n",i);
+			}
+			if(duL<0&&duR<0){
+				printf("Both velocities are negative at %d\n",i);
+			}
+			if(dPL<0&&dPR<0){
+				printf("Both pressures are negative at %d\n",i);
+			}
+			*/
+			//printf("testing sign=%d\n", sign(-3.5));
 
-			
+			/*	
 			drhobydx[i] = minmod(drhoL, drhoR);
 			dubydx[i]   = minmod(duL, duR);
 			dPbydx[i]   = minmod(dPL, dPR);
-			
+			*/
+
+			drhobydx[i] = (drhoL+ drhoR)/2.0;
+			dubydx[i]   = (duL+duR)/2.0;
+			dPbydx[i]   = (dPL+ dPR)/2.0;
+
 			
 			/*
 			drhobydx[i] = fmax(drhoL, drhoR);
@@ -120,13 +137,13 @@ void flux()
 			*/
 
 
-	}	
+		}	
 
 		
 	}//At this point we should have the derivatives at all the cells from 1 to Nx+2
 		
 
-
+	
 	//Method 1
 	
 	for(i=1;i<=N+1;i++)//use this for computing fluxes on all interfaces of all cells from cell 2 to cell 11.
@@ -141,8 +158,8 @@ void flux()
 		}
 	}
 
-
-	/*
+	
+/*	
 	//Method 2
 	
 	for(i=2;i<=N;i++)//Use this for computing fluxes on all interfaces except left face of cell 2 and right face of cell 11.
@@ -158,6 +175,25 @@ void flux()
 	}
 
 	//Compute flux between the cells 1 and 2
-	*/			
+	//
+		computeFluxAtBoundary(1,2,flux,'L');
+		for(j=0;j<3;j++)
+		{
+			netflux[j][1]=netflux[j][1] + flux[j];
+			netflux[j][2]=netflux[j][2] - flux[j];
+		}
+
+	//Compute flux between the cells N+1 and N+2
+	//
+		computeFluxAtBoundary(N+1,N+2,flux,'R');
+		for(j=0;j<3;j++)
+		{
+			netflux[j][N+1]=netflux[j][N+1] + flux[j];
+			netflux[j][N+2]=netflux[j][N+2] - flux[j];
+		}
+
+*/
+
+				
 	
 }

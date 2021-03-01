@@ -1,7 +1,9 @@
 #include "definitions.h"
 extern int N,problem;
 extern double *cell_xc,*cell_u1,*cell_u2,*cell_u3;
-void output()
+
+
+void output(int iteration)
 {
 	int i;
 	double rho_temp,u_temp,a_temp,e_temp,pressure,sp_int_energy;
@@ -10,9 +12,14 @@ switch(problem)
 {
 case 1:
 {
+
+	char str[50];
+	//Convert the iteration(int) into string
+	sprintf(str,"density%d.dat",iteration);
+
 	FILE *output_hll_1;
 	
-	output_hll_1 = fopen("output_hll_1.dat","w");
+	output_hll_1 = fopen(str, "w");
 	
 
 	
@@ -38,11 +45,14 @@ break;
 
 case 2:
 {
+	char str[50];
+	//Convert the iteration(int) into string
+	sprintf(str,"density%d.dat",iteration);
+
 	FILE *output_hll_2;
 	
-	output_hll_2 = fopen("output_hll_2.dat","w");
+	output_hll_2 = fopen(str, "w");
 	
-
 	for(i=2;i<=N+1;i++)
 	{
 		rho_temp= cell_u1[i];

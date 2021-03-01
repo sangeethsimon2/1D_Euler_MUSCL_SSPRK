@@ -1,5 +1,5 @@
 objects = program.o grid.o read_data.o boundaryCondition.o copySolution.o timestep.o updateSecondOrder.o initialize.o output.o delete_memory.o \
-	flux.o update.o localizedCosine.o line.o computeError.o computeFlux.o
+	flux.o update.o localizedCosine.o line.o computeError.o computeFlux.o computeFluxAtBoundary.o outputOldValues.o
 
 run:$(objects)
 	g++ -Wall -o run $(objects) -lm 
@@ -22,6 +22,8 @@ localizedCosine.o:localizedCosine.c definitions.h
 line.o:line.c definitions.h
 computeError.o:computeError.c definitions.h
 computeFlux.o:computeFlux.c definitions.h
+computeFluxAtBoundary.o:computeFluxAtBoundary.c definitions.h
+outputOldValues.o:outputOldValues.c definitions.h
 
 
 .PHONY:clean

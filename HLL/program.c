@@ -24,7 +24,11 @@ int main()
 	deltat=0;
 	time =0;
 	iter=0;
-	
+	int subiteration=0;
+
+
+
+
 	//output();	
 	
 	//applyBoundaryCondition();
@@ -45,28 +49,38 @@ int main()
  	printf("secondOrderFlag=%d\n",secondOrderFlag);
 	printf("NQuad=%d\n",NQuad);
 
-
-  //	while(iter<itermax) {
+  	//while(iter<1) {
   	while(time<tmax){
         	//Increment the RK time step variable to 1 to indicate that we are about to deal with the first RK step
         	timeAccuracy +=1;
 
         	//Compute time step only for the first RK time step 
         	if(timeAccuracy==1){
-              		//printf( "First order update\n");
-		
+              	//	printf( "First order update\n");
+			
+			//output(subiteration);
+
+
 			applyBoundaryCondition();
 
-	
+		
 			computeTimeStep();
 			//printf("timestep is:%lf\n",deltat);
 			flux();
 
-			copySolution();
+			//outputOldValues(subiteration);
 
+			copySolution();
+		
 			update();
-			
-	
+					
+			subiteration++;	
+		
+			//outputOldValues(subiteration);
+
+
+			//output(subiteration);
+
                 	//If we need only a first order accuracy
                 	if(secondOrderFlag==0){
                         	timeAccuracy = 0;
@@ -80,7 +94,7 @@ int main()
         	}
 
         	if(timeAccuracy==2){
-            		//printf( "Second order update\n");
+            	//	printf( "Second order update\n");
 
 			applyBoundaryCondition();
 
@@ -101,13 +115,16 @@ int main()
 
                 	iter++;
 
+			subiteration++;
+
 
         	}
 
            }
 
 	printf("Final time is:%lf\n", time);
-	output();	
+	output(iter);
+
 	computeError(time);
 
 	delete_memory();

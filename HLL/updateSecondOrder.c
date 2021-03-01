@@ -10,9 +10,9 @@ void updateSecondOrder()
 	
 	for(i=2;i<=N+1;i++)
 	{
-		cell_u1[i] = 0.5*cell_u1[i] + 0.5*cell_u1_old[i] - 0.5* (deltat/dx)*(netflux[0][i]);
-		cell_u2[i] = 0.5*cell_u2[i] + 0.5*cell_u2_old[i] - 0.5* (deltat/dx)*(netflux[1][i]);
- 		cell_u3[i] = 0.5*cell_u3[i] + 0.5*cell_u3_old[i] - 0.5* (deltat/dx)*(netflux[2][i]);
+		cell_u1[i] = 0.5*cell_u1[i] + 0.5*cell_u1_old[i] - 0.5* (deltat)*(netflux[0][i]);
+		cell_u2[i] = 0.5*cell_u2[i] + 0.5*cell_u2_old[i] - 0.5* (deltat)*(netflux[1][i]);
+ 		cell_u3[i] = 0.5*cell_u3[i] + 0.5*cell_u3_old[i] - 0.5* (deltat)*(netflux[2][i]);
 
 
 

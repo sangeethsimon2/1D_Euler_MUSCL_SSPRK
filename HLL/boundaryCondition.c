@@ -5,7 +5,7 @@ extern double *cell_u1,*cell_u2,*cell_u3;
 
 void applyBoundaryCondition(){
 
-/*	
+	
 	//Periodic
 	
 	//Left boundary
@@ -26,9 +26,9 @@ void applyBoundaryCondition(){
 	cell_u1[N+3] = cell_u1[3];
 	cell_u2[N+3] = cell_u2[3];
 	cell_u3[N+3] = cell_u3[3];
-*/
 
-	
+
+/*	
 	//Zero gradient
 	//Left boundary
 	cell_u1[0] = cell_u1[3];
@@ -48,7 +48,7 @@ void applyBoundaryCondition(){
 	cell_u1[N+3] = cell_u1[N];
 	cell_u2[N+3] = cell_u2[N];
 	cell_u3[N+3] = cell_u3[N];
-	
+*/	
 
 
 }

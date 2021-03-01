@@ -11,12 +11,14 @@ void applyBoundaryCondition();
 void copySolution();
 void updateSecondOrder();
 void computeTimeStep();
-void output();
+void output(int);
 void flux();
 void localizedCosine(double , double *, double);
 void line(double , double *, double);
 void computeError(double);
 void computeFlux(int, int, double*);
+void computeFluxAtBoundary(int, int, double*, char);
+void outputOldValues(int);
 
 
 /*

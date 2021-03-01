@@ -42,7 +42,23 @@ void initialize()
 	{
 		netflux[i] = (double *)malloc((N+4)*sizeof(double));
 	}
-	
+
+	for(i=0;i<N+4;i++){
+		cell_u1[i] =0.0;
+		cell_u2[i] =0.0;
+		cell_u3[i] =0.0;
+
+		cell_u1_old[i] =0.0;
+		cell_u2_old[i] =0.0;
+		cell_u3_old[i] =0.0;
+
+		drhobydx[i] =0.0;
+		dubydx[i] =0.0;
+		dPbydx[i] = 0.0;
+
+
+
+	}	
 	
 	problem=1;
 	/*
