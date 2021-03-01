@@ -1,0 +1,29 @@
+1. Input the grids used for performing the convergence study within inputParameters.sh file. Use integer values here.
+1b. If you want to change other experiment parameters like CFL, final time, solution accuracy etc, modify the data.template file.
+2. source runConvergenceExperiments.sh
+3. On a successful run the following are produced:
+	a) A ConvergenceData.dat file at the trunk dir
+	b) A ConvergencePlot.pdf file at the trunk dir
+	c) Several Grid_N folders where N stands for the grid used for convergence analysis
+	
+	d) A solutionPlot.pdf within each Grid_N folder that shows an initial vs final solutions on the grid for that instance of N.
+	
+4. To modify the convergence plot features, please edit the script plotConvergenceCurve.gnuplot
+
+5. To modify the solution plot feature, please edit the script plotSolution.gnuplot
+
+6. source clean.sh to clean the directory 
+About the code:
+
+The grid is set up as 
+
+For a given N (say=10)
+
+-0-1-2-3------N-N+1-N+2-N+3
+
+Left boundary cells are 0 and 1
+Right boundary cells are N+2 and N+3 (12 and 13)
+Internal cells of interest are 2 to N+1 (11).
+
+
+	
