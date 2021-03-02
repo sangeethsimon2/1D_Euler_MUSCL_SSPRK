@@ -1,7 +1,7 @@
 1 #Length_of_domain
 Grid #Number_of_cells
-0.5 #CFL
-100 #itermax
+0.25 #CFL
+10000000000 #itermax
 1.0 #time_max
 1 #polynomial_order
 3 #nquad

@@ -218,6 +218,6 @@ void computeFlux(int L, int R, double *Flux ){
   printf("rhoR = %lf \t uR=%lf \t pR= %lf\n",YR[0],YR[1],YR[2]);
   */
   
-  fluxHLLC(YL,YR,Flux);
+  fluxHLL(YL,YR,Flux);
 		
 }

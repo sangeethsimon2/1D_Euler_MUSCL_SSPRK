@@ -80,9 +80,9 @@ void computeSlopes(){
 	ul   = cell_u2[i-1]/rhol;  uc   = cell_u2[i]/rhoc;   ur   = cell_u2[i+1]/rhor;
 	el   = cell_u3[i-1];	   ec   = cell_u3[i];	     er   = cell_u3[i+1];
 			
-	pl = 0.4 * (el - 0.5*rhol * (ul * ul));	
-	pc = 0.4 * (ec - 0.5*rhoc * (uc * uc));	
-	pr = 0.4 * (er - 0.5*rhor * (ur * ur));
+	pl = (gamma-1.) * (el - 0.5*rhol * (ul * ul));	
+	pc = (gamma-1.) * (ec - 0.5*rhoc * (uc * uc));	
+	pr = (gamma-1.) * (er - 0.5*rhor * (ur * ur));
 
 
 	//Compute left and right slopes
@@ -94,18 +94,19 @@ void computeSlopes(){
 
 	dPL = (pc-pl)/dx;
 	dPR = (pr-pc)/dx;
-			
+
+	/*
 	//Use minmod to limit the function
 	drhobydx[i] = minmod(drhoL, drhoR);
 	dubydx[i]   = minmod(duL, duR);
 	dPbydx[i]   = minmod(dPL, dPR);
-	
-	/*
-	//use central difference to compute the function. Use only for smooth solutions.
-	drhobydx[i] = (drhoL+ drhoR)/2.0;
-	dubydx[i]   = (duL+duR)/2.0;
-	dPbydx[i]   = (dPL+ dPR)/2.0;
 	*/
+	
+	//use central difference to compute the function. Use only for smooth solutions.
+	drhobydx[i] = 0.5 * (drhoL+ drhoR);
+	dubydx[i]   = 0.5 * (duL+duR);
+	dPbydx[i]   = 0.5 * (dPL+ dPR);
+	
 			
 	/*
 	  drhobydx[i] = vanAlbada(drhoL, drhoR,dx);
