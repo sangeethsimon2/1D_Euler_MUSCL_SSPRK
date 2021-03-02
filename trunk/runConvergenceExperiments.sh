@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export LC_NUMERIC="en_US.UTF-8"
+
 #Compile the executable within src
 cd src
 make
@@ -21,13 +23,12 @@ source inputParameters.sh
 #Obtain length of the grid array
 len=${#Grid[@]}
 
-#Compute log(gridspacing) and store it in GridArray[]
+#Compute gridspacing and store it in GridArray[]
 for ((i=0;i<$len;i++))  
   do
 	 dx=$(echo "scale=5; 1.0 / ${Grid[$i]}" | bc)
-	 Random=$(echo "l($dx)" | bc -l)
- 	 GridArray[$i]=$Random
-   done
+	 GridArray[$i]=$dx 
+  done
 
 
 index=0
@@ -43,7 +44,7 @@ for grid in ${Grid[@]}
     rsync -azh ../src/run .
     ./run
 
-    #Extract the log(sqrt(L2 error)) and store it in ErrorArray[] 
+    #Extract the L2 error and store it in ErrorArray[] 
     value=$(cat error.dat | grep "Error"| cut -d "=" -f2)    
     ErrorArray[$index]=$value
     index=$(($index+1))
@@ -55,11 +56,11 @@ for grid in ${Grid[@]}
     cd ../
   done
 
-  #Output the data needed for convergence analysis: Log(dx) and Log(sqrt(L2 error))  
-printf '%s \t %s\n' "#Log(sqrt(dx))" "Log(Error)" > ConvergenceData.dat
+  #Output the data needed for convergence analysis: dx and L2 error  
+#printf '%s \t %s\n' "#dx" "Error" > ConvergenceData.dat
 len=${#GridArray[@]}
 for ((j=0;j<$len;j++))  
-  do
+do
     printf '%0.6f \t %.6f\n' "${GridArray[j]}" "${ErrorArray[j]}">>ConvergenceData.dat
   done
 

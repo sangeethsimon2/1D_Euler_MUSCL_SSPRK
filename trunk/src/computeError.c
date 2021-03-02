@@ -85,14 +85,15 @@ void computeError(double time){
 
   	}
 	l2Error /= N;
+	l2Error = sqrt(l2Error);
 
 	FILE *errorfile;
 	
 	errorfile = fopen("error.dat", "w");
 	
-	fprintf(errorfile,"Error= %lf",log(sqrt(l2Error)));
+	fprintf(errorfile,"Error= %lf",l2Error);
 
-	printf("Sqrt Error is: %lf\n",sqrt(l2Error));
+	printf("Error is: %lf\n",l2Error);
 
 	fclose(errorfile);
 }
