@@ -2,6 +2,7 @@
 
 extern int N;
 extern double *cell_xc,*cell_u1,*cell_u2,*cell_u3;
+extern double *drhobydx, *dubydx, *dPbydx;
 extern double dx;
 extern int NQuad;
 
@@ -17,8 +18,7 @@ void computeError(double time){
 
 	double basis1, basis2;
 	double cornerA, cornerB;
-	double drhobydx;
-
+	
 	double quadCoord;
 	double deltaX;
 	double interpolatedRho;
@@ -42,11 +42,12 @@ void computeError(double time){
 		starting_index = 6;
 	 }
 
+	 // Compute slopes
+	 computeSlopes();
+
   	for(unsigned int i=2;i<=N+1;i++) {
 		
-		drhobydx = (cell_u1[i+1]-cell_u1[i])/(dx);
-			
-//		printf("derivative:%lf\n",drhobydx);
+	  //printf("derivative:%lf\n",drhobydx[i]);
 
 	
 		for(unsigned int iq=0;iq<NQuad;iq++){
@@ -66,7 +67,7 @@ void computeError(double time){
 
 			deltaX = quadCoord - cell_xc[i];
 
-			interpolatedRho = cell_u1[i]+drhobydx*deltaX;
+			interpolatedRho = cell_u1[i]+drhobydx[i]*deltaX;
 
 			localizedCosine(quadCoord, cellData, time);
 			//line(quadCoord, cellData, time);

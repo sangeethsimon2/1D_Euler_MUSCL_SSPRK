@@ -32,6 +32,8 @@ int main()
 	grid();
 	//Initialize internal cells
 	initialize();
+	//Both periodic and open boundary conditions available
+	applyBoundaryCondition();
 	
 	deltat=0;
 	time =0;
@@ -50,7 +52,7 @@ int main()
   	
 	//Time loop
 	//while(iter<1) {
-  	while(time<tmax){
+  	while(time<tmax && iter < itermax){
         	//Increment the RK time step variable to 1 to indicate that we are about to deal with the first RK step
         	timeAccuracy +=1;
 
