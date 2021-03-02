@@ -126,11 +126,7 @@ void flux()
 {
 	int i,j;
 	
-	double rhol,rhor,ul,ur,el,er,pl,pr,r,uroe,hroe,aroe,temp,temp1,temp2,sl,sr,sm,flux[3],u1hllc,u2hllc,u3hllc;
-	double hl,hr,al,ar;
-	double rhol_old,rhor_old,ul_old,ur_old,el_old,er_old,pl_old,pr_old;
-	double rhoc,uc,ec,pc;
-	double drhoL, drhoR, duL, duR, dPL, dPR;
+	double flux[3];
 
 	//Initialize arrays to 0
 	for(i=0;i<3;i++)
@@ -141,10 +137,8 @@ void flux()
 		}
 	}
 
-	computeSlopes();
-	
 	//Method 1
-	
+	computeSlopes();
 	for(i=1;i<=N+1;i++)//use this for computing fluxes on all interfaces of all cells from cell 2 to cell 11.
 	{	
 	

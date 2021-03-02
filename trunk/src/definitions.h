@@ -20,7 +20,7 @@ void computeFlux(int, int, double*);
 void computeFluxAtBoundary(int, int, double*, char);
 void outputOldValues(int);
 void outputForPrint(int);
-
+void computeSlopes();
 
 
 /*
